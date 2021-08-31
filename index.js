@@ -1,5 +1,5 @@
-// const { Telegraf, Markup } = require('telegraf');
-const { Composer, Markup } = require('micro-bot');
+const { Telegraf, Markup } = require('telegraf');
+const { Composer } = require('micro-bot');
 const axios = require('axios');
 const { Keyboard, Key } = require('telegram-keyboard');
 require('dotenv').config();
