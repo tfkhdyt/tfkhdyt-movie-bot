@@ -28,7 +28,7 @@ bot.on('text', (ctx) => {
       columns: 1
     }).inline();
     // console.log(keyboard);
-    ctx.reply(`Menampilkan film/series dengan judul "${movieQuery}":`, keyboard);
+    ctx.reply(`Menampilkan film/series dengan judul "${ctx.message.text}":`, keyboard);
   });
 });
 
