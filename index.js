@@ -20,6 +20,7 @@ bot.on('text', (ctx) => {
   axios.get(omdbAPI + '&s=' + movieQuery)
   .then(res => {
     // console.log(res.data.Search);
+    if (res.data.Response == 'False') return ctx.reply('Hasil tidak ditemukan! Silahkan masukkan judul film yang lebih spesifik.')
     const hasilQuery = res.data.Search;
     const keyCallback = hasilQuery.map((film) => {
       return Key.callback(`${film.Title} (${film.Year})`, film.imdbID);
