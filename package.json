@@ -14,5 +14,9 @@
     "netflix"
   ],
   "author": "tfkhdyt",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "telegraf": "^4.4.1"
+  }
 }
