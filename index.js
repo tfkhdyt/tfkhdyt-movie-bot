@@ -4,8 +4,9 @@ const axios = require('axios');
 const { Keyboard, Key } = require('telegram-keyboard');
 require('dotenv').config();
 
-// const bot = new Telegraf(process.env.BOT_TOKEN);
+//const bot = new Telegraf(process.env.BOT_TOKEN);
 const bot = new Composer();
+
 const omdbAPI = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}`;
 
 bot.start((ctx) => ctx.reply(`Halo ${ctx.from.first_name}, selamat datang di @TFKHDYTMovieBot, ketikkan nama film/series yang ingin dicari untuk menampilkan detail dari film tersebut.`));
@@ -21,7 +22,6 @@ Contoh:
     /year 2021 What If...?`));
 
 bot.command('year', (ctx) => {
-  console.log(ctx.update.message.text.split(' '));
   const args = ctx.update.message.text.split(' ');
   const year = args[1];
   let judulFilm = '';
@@ -29,21 +29,36 @@ bot.command('year', (ctx) => {
     let separator = (i < args.length - 1) ? ' ' : '';
     judulFilm += args[i] + separator;
   }
-  console.log(`Tahun : ${year}\nJudul Film : ${judulFilm}`);
   const movieQuery = encodeURI(judulFilm);
   axios.get(omdbAPI + '&s=' + movieQuery + '&y=' + year)
   .then(res => {
-    // console.log(res.data.Search);
-    if (res.data.Response == 'False') return ctx.reply('Hasil tidak ditemukan! Silakan masukkan judul film yang lebih spesifik.');
-    const hasilQuery = res.data.Search;
-    const keyCallback = hasilQuery.map((film) => {
-      return Key.callback(`${film.Title} (${film.Year})`, film.imdbID);
-    });
-    const keyboard = Keyboard.make(keyCallback, {
-      columns: 1
-    }).inline();
-    // console.log(keyboard);
-    ctx.reply(`Menampilkan film/series dengan judul "${judulFilm} (${year})":`, keyboard);
+    const error = res.data.Error;
+    if (error == 'Too many results.') {
+      axios.get(omdbAPI + '&t=' + movieQuery + '&y=' + year)
+      .then(res => {
+        const error = res.data.Error;
+        if (error == 'Movie not found!') {
+          return ctx.reply('Hasil tidak ditemukan! Silakan masukkan judul film yang lain.');
+        }
+        const hasilQuery = res.data;
+        const keyCallback = Key.callback(`${hasilQuery.Title} (${hasilQuery.Year})`, hasilQuery.imdbID);
+        const keyboard = Keyboard.make(keyCallback, {
+          columns: 1
+        }).inline();
+        ctx.reply(`Menampilkan film/series dengan judul "${judulFilm} (${year})":`, keyboard);
+      });
+    } else if (error == 'Movie not found!') {
+      ctx.reply('Hasil tidak ditemukan! Silakan masukkan judul film yang lebih spesifik.');
+    } else {
+      const hasilQuery = res.data.Search;
+      const keyCallback = hasilQuery.map((film) => {
+        return Key.callback(`${film.Title} (${film.Year})`, film.imdbID);
+      });
+      const keyboard = Keyboard.make(keyCallback, {
+        columns: 1
+      }).inline();
+      ctx.reply(`Menampilkan film/series dengan judul "${judulFilm} (${year})":`, keyboard);
+    }
   });
 });
 
@@ -51,22 +66,38 @@ bot.on('text', (ctx) => {
   const movieQuery = encodeURI(ctx.message.text);
   axios.get(omdbAPI + '&s=' + movieQuery)
   .then(res => {
-    // console.log(res.data.Search);
-    if (res.data.Response == 'False') return ctx.reply('Hasil tidak ditemukan! Silakan masukkan judul film yang lebih spesifik.');
-    const hasilQuery = res.data.Search;
-    const keyCallback = hasilQuery.map((film) => {
-      return Key.callback(`${film.Title} (${film.Year})`, film.imdbID);
-    });
-    const keyboard = Keyboard.make(keyCallback, {
-      columns: 1
-    }).inline();
-    // console.log(keyboard);
-    ctx.reply(`Menampilkan film/series dengan judul "${ctx.message.text}":`, keyboard);
+    const error = res.data.Error;
+    if (error == 'Too many results.') {
+      axios.get(omdbAPI + '&t=' + movieQuery)
+      .then(res => {
+        const error = res.data.Error;
+        if (error == 'Movie not found!') {
+          return ctx.reply('Hasil tidak ditemukan! Silakan masukkan judul film yang lain.');
+        }
+        const hasilQuery = res.data;
+        const keyCallback = Key.callback(`${hasilQuery.Title} (${hasilQuery.Year})`, hasilQuery.imdbID);
+        const keyboard = Keyboard.make(keyCallback, {
+          columns: 1
+        }).inline();
+        console.log(keyboard);
+        ctx.reply(`Menampilkan film/series dengan judul "${ctx.message.text}":`, keyboard);
+      });
+    } else if (error == 'Movie not found!') {
+      ctx.reply('Hasil tidak ditemukan! Silakan masukkan judul film yang lebih spesifik.');
+    } else {
+      const hasilQuery = res.data.Search;
+      const keyCallback = hasilQuery.map((film) => {
+        return Key.callback(`${film.Title} (${film.Year})`, film.imdbID);
+      });
+      const keyboard = Keyboard.make(keyCallback, {
+        columns: 1
+      }).inline();
+      ctx.reply(`Menampilkan film/series dengan judul "${ctx.message.text}":`, keyboard);
+    }
   });
 });
 
 bot.on('callback_query', (ctx) => {
-  // console.log(ctx.callbackQuery.data);
   const imdbID = ctx.callbackQuery.data;
   axios.get(omdbAPI + '&i=' + imdbID)
   .then(res => {
@@ -100,5 +131,5 @@ ${data.Plot}
   });
 });
 
-// bot.launch();
+//bot.launch();
 module.exports = bot;
