@@ -1,12 +1,6 @@
-const {
-  Telegraf,
-  Markup
-} = require('telegraf');
+const { Telegraf, Markup } = require('telegraf');
 const axios = require('axios');
-const {
-  Keyboard,
-  Key
-} = require('telegram-keyboard');
+const { Keyboard, Key } = require('telegram-keyboard');
 require('dotenv').config();
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
