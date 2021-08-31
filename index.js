@@ -1,13 +1,17 @@
-const { Telegraf, Markup } = require('telegraf');
+// const { Telegraf, Markup } = require('telegraf');
+const { Composer } = require('micro-bot');
 const axios = require('axios');
 const { Keyboard, Key } = require('telegram-keyboard');
 require('dotenv').config();
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
+//const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Composer();
 const omdbAPI = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}`;
 let keyboard;
 
 bot.start((ctx) => ctx.reply(`Halo ${ctx.from.first_name}, selamat datang di @TFKHDYTMovieBot, ketikkan nama film/series yang ingin dicari untuk menampilkan detail dari film tersebut.`));
+
+bot.command('help', (ctx) => ctx.reply(`Kamu hanya perlu mengetik judul film/series saja`));
 
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 
@@ -63,4 +67,5 @@ ${data.Plot}
   });
 });
 
-bot.launch();
+// bot.launch();
+module.exports = bot;
