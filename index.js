@@ -28,7 +28,7 @@ bot.on('text', (ctx) => {
       columns: 1
     }).inline();
     // console.log(keyboard);
-    bot.telegram.sendMessage(ctx.chat.id, `Menampilkan film/series dengan judul "${movieQuery}":`, keyboard);
+    ctx.reply(`Menampilkan film/series dengan judul "${movieQuery}":`, keyboard);
   });
 });
 
