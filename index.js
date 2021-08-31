@@ -16,7 +16,7 @@ bot.command('help', (ctx) => ctx.reply(`Kamu hanya perlu mengetik judul film/ser
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 
 bot.on('text', (ctx) => {
-  const movieQuery = ctx.message.text;
+  const movieQuery = encodeURI(ctx.message.text);
   axios.get(omdbAPI + '&s=' + movieQuery)
   .then(res => {
     // console.log(res.data.Search);
