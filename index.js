@@ -5,10 +5,10 @@ const { Keyboard, Key } = require('telegram-keyboard');
 require('dotenv').config();
 
 // Development
-//const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Production
-const bot = new Composer();
+//const bot = new Composer();
 
 const omdbAPI = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}`;
 
@@ -44,49 +44,9 @@ Pencarian Film Berdasarkan Tahun Rilis:
 Contoh:
     What If (2021)`));
 
-// bot.command('year', (ctx) => {
-//   const args = ctx.update.message.text.split(' ');
-//   const year = args[1];
-//   let judulFilm = '';
-//   for (let i = 2; i < args.length; i++) {
-//     let separator = (i < args.length - 1) ? ' ' : '';
-//     judulFilm += args[i] + separator;
-//   }
-//   const movieQuery = encodeURI(judulFilm);
-//   axios.get(omdbAPI + '&s=' + movieQuery + '&y=' + year)
-//   .then(res => {
-//     const error = res.data.Error;
-//     if (error == 'Too many results.') {
-//       axios.get(omdbAPI + '&t=' + movieQuery + '&y=' + year)
-//       .then(res => {
-//         const error = res.data.Error;
-//         if (error == 'Movie not found!') {
-//           return ctx.reply('Hasil tidak ditemukan! Silakan masukkan judul film yang lain.');
-//         }
-//         const hasilQuery = res.data;
-//         const keyCallback = Key.callback(`${hasilQuery.Title} (${hasilQuery.Year})`, hasilQuery.imdbID);
-//         const keyboard = Keyboard.make(keyCallback, {
-//           columns: 1
-//         }).inline();
-//         ctx.reply(`Menampilkan film/series dengan judul "${judulFilm} (${year})":`, keyboard);
-//       });
-//     } else if (error == 'Movie not found!') {
-//       ctx.reply('Hasil tidak ditemukan! Silakan masukkan judul film yang lebih spesifik.');
-//     } else {
-//       const hasilQuery = res.data.Search;
-//       const keyCallback = hasilQuery.map((film) => {
-//         return Key.callback(`${film.Title} (${film.Year})`, film.imdbID);
-//       });
-//       const keyboard = Keyboard.make(keyCallback, {
-//         columns: 1
-//       }).inline();
-//       ctx.reply(`Menampilkan film/series dengan judul "${judulFilm} (${year})":`, keyboard);
-//     }
-//   });
-// });
-
+let movieQuery = '';
 bot.on('text', (ctx) => {
-  let movieQuery = ctx.message.text;
+  movieQuery = ctx.message.text;
   const args = ctx.update.message.text.split(' ');
   let year = '';
   let yearMentah = '';
@@ -125,13 +85,16 @@ bot.on('text', (ctx) => {
       });
       const keyboard = Keyboard.make(keyCallback, {
         columns: 1
-      }).inline();
+      }).removeKeyboard().inline();
       ctx.reply(`Menampilkan film/series dengan judul "${ctx.message.text}":`, keyboard);
+      //console.log(ctx);
     }
   });
 });
 
 bot.on('callback_query', (ctx) => {
+  //console.log(movieQuery);
+  ctx.deleteMessage(ctx.update.callback_query.message.message_id);
   const imdbID = ctx.callbackQuery.data;
   axios.get(omdbAPI + '&i=' + imdbID)
   .then(res => {
@@ -157,7 +120,7 @@ bot.on('callback_query', (ctx) => {
 });
 
 // Development
-//bot.launch();
+bot.launch();
 
 // Production
-module.exports = bot;
+//module.exports = bot;
