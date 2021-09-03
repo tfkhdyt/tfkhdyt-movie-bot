@@ -5,10 +5,10 @@ const { Keyboard, Key } = require('telegram-keyboard');
 require('dotenv').config();
 
 // Development
-const bot = new Telegraf(process.env.BOT_TOKEN);
+//const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Production
-//const bot = new Composer();
+const bot = new Composer();
 
 const omdbAPI = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}`;
 
@@ -120,7 +120,7 @@ bot.on('callback_query', (ctx) => {
 });
 
 // Development
-bot.launch();
+//bot.launch();
 
 // Production
-//module.exports = bot;
+module.exports = bot;
