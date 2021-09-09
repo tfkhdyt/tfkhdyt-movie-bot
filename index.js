@@ -28,6 +28,7 @@ ${data.Plot}
 *Negara* : ${data.Country}
 *Awards* : ${data.Awards}
 *Produksi* : ${data.Production}
+*Box Office* : ${data.BoxOffice}
 *Metascore* : ${data.Metascore}
 *IMDB Rating* : ${data.imdbRating}`;
 };
@@ -120,9 +121,7 @@ bot.on('callback_query', (ctx) => {
 });
 
 // Development
-//bot.launch();
+// bot.launch();
 
 // Production
 module.exports = bot;
-
-
