@@ -13,24 +13,23 @@ const bot = new Composer();
 const omdbAPI = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}`;
 
 const sendDetail = (data) => {
-  return `*Judul* : ${data.Title}
-*Tahun* : ${data.Year}
-*Rated* : ${data.Rated}
-*Tgl. Rilis* : ${data.Released}
-*Durasi* : ${data.Runtime}
-*Genre* : ${data.Genre}
-*Sutradara* : ${data.Director}
-*Penulis* : ${data.Writer}
-*Aktor* : ${data.Actors}
-*Plot* :
-${data.Plot}
-*Bahasa* : ${data.Language}
-*Negara* : ${data.Country}
-*Awards* : ${data.Awards}
-*Produksi* : ${data.Production}
-*Box Office* : ${data.BoxOffice}
-*Metascore* : ${data.Metascore}
-*IMDB Rating* : ${data.imdbRating}`;
+  return (data.Title !== 'N/A' && data.Title !== 'undefined') ? `*Judul* : ${data.Title} \n` : '' +
+(data.Year !== 'N/A' && data.Year !== 'undefined') ? `*Tahun* : ${data.Year} \n` : '' +
+(data.Rated !== 'N/A' && data.Rated !== 'undefined') ? `*Rated* : ${data.Rated} \n` : '' +
+(data.Released !== 'N/A' && data.Released !== 'undefined') ? `*Tgl. Rilis* : ${data.Released} \n` : '' +
+(data.Runtime !== 'N/A' && data.Runtime !== 'undefined') ? `*Durasi* : ${data.Runtime} \n` : '' +
+(data.Genre !== 'N/A' && data.Genre !== 'undefined') ? `*Genre* : ${data.Genre} \n` : '' +
+(data.Director !== 'N/A' && data.Director !== 'undefined') ? `*Sutradara* : ${data.Director} \n` : '' +
+(data.Writer !== 'N/A' && data.Writer !== 'undefined') ? `*Penulis* : ${data.Writer} \n` : '' +
+(data.Actors !== 'N/A' && data.Actors !== 'undefined') ? `*Aktor* : ${data.Actors} \n` : '' +
+(data.Plot !== 'N/A' && data.Plot !== 'undefined') ? `*Plot* :\n ${data.Plot} \n` : '' +
+(data.Language !== 'N/A' && data.Language !== 'undefined') ? `*Bahasa* : ${data.Language} \n` : '' +
+(data.Country !== 'N/A' && data.Country !== 'undefined') ? `*Negara* : ${data.Country} \n` : '' +
+(data.Awards !== 'N/A' && data.Awards !== 'undefined') ? `*Penghargaan* : ${data.Awards} \n` : '' +
+(data.Production !== 'N/A' && data.Production !== 'undefined') ? `*Produksi* : ${data.Production} \n` : '' +
+(data.BoxOffice !== 'N/A' && data.BoxOffice !== 'undefined') ? `*Box Office* : ${data.BoxOffice} \n` : '' +
+(data.Metascore !== 'N/A' && data.Metascore !== 'undefined') ? `*Metascore* : ${data.Metascore} \n` : '' +
+(data.imdbRating !== 'N/A' && data.imdbRating !== 'undefined') ? `*IMDB Rating* : ${data.imdbRating} \n` : '';
 };
 
 bot.start((ctx) => ctx.reply(`Halo ${ctx.from.first_name}, selamat datang di @TFKHDYTMovieBot, ketikkan nama film/series yang ingin dicari untuk menampilkan detail dari film tersebut.`));
