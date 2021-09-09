@@ -5,7 +5,7 @@ const { Keyboard, Key } = require('telegram-keyboard');
 require('dotenv').config();
 
 // Development
-//const bot = new Telegraf(process.env.BOT_TOKEN);
+// const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Production
 const bot = new Composer();
@@ -13,23 +13,9 @@ const bot = new Composer();
 const omdbAPI = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}`;
 
 const sendDetail = (data) => {
-  detail = (data.Title !== 'N/A' && data.Title !== 'undefined') ? `*Judul* : ${data.Title} \n` : '' +
-  (data.Year !== 'N/A' && data.Year !== 'undefined') ? `*Tahun* : ${data.Year} \n` : '' +
-  (data.Rated !== 'N/A' && data.Rated !== 'undefined') ? `*Rated* : ${data.Rated} \n` : '' +
-  (data.Released !== 'N/A' && data.Released !== 'undefined') ? `*Tgl. Rilis* : ${data.Released} \n` : '' +
-  (data.Runtime !== 'N/A' && data.Runtime !== 'undefined') ? `*Durasi* : ${data.Runtime} \n` : '' +
-  (data.Genre !== 'N/A' && data.Genre !== 'undefined') ? `*Genre* : ${data.Genre} \n` : '' +
-  (data.Director !== 'N/A' && data.Director !== 'undefined') ? `*Sutradara* : ${data.Director} \n` : '' +
-  (data.Writer !== 'N/A' && data.Writer !== 'undefined') ? `*Penulis* : ${data.Writer} \n` : '' +
-  (data.Actors !== 'N/A' && data.Actors !== 'undefined') ? `*Aktor* : ${data.Actors} \n` : '' +
-  (data.Plot !== 'N/A' && data.Plot !== 'undefined') ? `*Plot* :\n ${data.Plot} \n` : '' +
-  (data.Language !== 'N/A' && data.Language !== 'undefined') ? `*Bahasa* : ${data.Language} \n` : '' +
-  (data.Country !== 'N/A' && data.Country !== 'undefined') ? `*Negara* : ${data.Country} \n` : '' +
-  (data.Awards !== 'N/A' && data.Awards !== 'undefined') ? `*Penghargaan* : ${data.Awards} \n` : '' +
-  (data.Production !== 'N/A' && data.Production !== 'undefined') ? `*Produksi* : ${data.Production} \n` : '' +
-  (data.BoxOffice !== 'N/A' && data.BoxOffice !== 'undefined') ? `*Box Office* : ${data.BoxOffice} \n` : '' +
-  (data.Metascore !== 'N/A' && data.Metascore !== 'undefined') ? `*Metascore* : ${data.Metascore} \n` : '' +
-  (data.imdbRating !== 'N/A' && data.imdbRating !== 'undefined') ? `*IMDB Rating* : ${data.imdbRating} \n` : '';
+  console.log(data);
+  const detail = `${(data.Title !== 'N/A' && data.Title !== undefined) ? '*Judul* : ' + data.Title : ''} ${(data.Rated !== 'N/A' && data.Rated !== undefined) ? '\n*Rated* : ' + data.Rated : ''} ${(data.Year !== 'N/A' && data.Year !== undefined) ? '\n*Tahun* : ' + data.Year : ''} ${(data.totalSeasons !== 'N/A' && data.totalSeasons !== undefined) ? '\n*Jumlah Musim* : ' + data.totalSeasons : ''} ${(data.Released !== 'N/A' && data.Released !== undefined) ? '\n*Tgl. Rilis* : ' + data.Released : ''} ${(data.Runtime !== 'N/A' && data.Runtime !== undefined) ? '\n*Durasi* : ' + data.Runtime : ''} ${(data.Genre !== 'N/A' && data.Genre !== undefined) ? '\n*Genre* : ' + data.Genre : ''} ${(data.Director !== 'N/A' && data.Director !== undefined) ? '\n*Sutradara* : ' + data.Director : ''} ${(data.Writer !== 'N/A' && data.Writer !== undefined) ? '\n*Penulis* : ' + data.Writer : ''} ${(data.Actors !== 'N/A' && data.Actors !== undefined) ? '\n*Aktor* : ' + data.Actors : ''} ${(data.Plot !== 'N/A' && data.Plot !== undefined) ? '\n*Plot* :\n' + data.Plot : ''} ${(data.Language !== 'N/A' && data.Language !== undefined) ? '\n*Bahasa* : ' + data.Language : ''} ${(data.Country !== 'N/A' && data.Country !== undefined) ? '\n*Negara* : ' + data.Country : ''} ${(data.Awards !== 'N/A' && data.Awards !== undefined) ? '\n*Penghargaan* : ' + data.Awards : ''} ${(data.Production !== 'N/A' && data.Production !== undefined) ? '\n*Produksi* : ' + data.Production : ''} ${(data.BoxOffice !== 'N/A' && data.BoxOffice !== undefined) ? '\n*Box Office* : ' + data.BoxOffice : ''} ${(data.Metascore !== 'N/A' && data.Metascore !== undefined) ? '\n*Metascore* : ' + data.Metascore + '/100' : ''} ${(data.imdbRating !== 'N/A' && data.imdbRating !== undefined) ? '\n*IMDB Rating* : ' + data.imdbRating + '/10' : ''}`;
+  console.log(detail);
   return detail;
 };
 
