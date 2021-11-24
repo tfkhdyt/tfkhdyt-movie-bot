@@ -4,7 +4,7 @@ const axios = require('axios');
 const { Keyboard, Key } = require('telegram-keyboard');
 require('dotenv').config();
 
-// Atur mode'
+// Atur mode
 let bot;
 switch (process.env.NODE_ENV) {
   case 'development':
@@ -185,7 +185,7 @@ bot.on('text', (ctx) => {
 bot.on('callback_query', (ctx) => {
   //console.log(movieQuery);
   ctx.deleteMessage(ctx.update.callback_query.message.message_id);
-  const [imdbID, Title] = ctx.callbackQuery.data.split('|');
+  const imdbID = ctx.callbackQuery.data;
   axios.get(omdbAPI + '&i=' + imdbID).then((res) => {
     //console.log(res.data);
     const data = res.data;
