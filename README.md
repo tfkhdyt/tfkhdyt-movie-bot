@@ -1,13 +1,16 @@
 # tfkhdyt-movie-bot
+
 Sebuah bot Telegram untuk mencari film dan mendownload film lewat pahe.ph
 
 # Screenshots
+
 <a href='https://postimg.cc/ThNLNrC0' target='_blank'><img src='https://i.postimg.cc/ThNLNrC0/Screenshot-2021-08-31-22-07-50-18-0b342c26d6c44f3c8d2de40eabb4e1da.jpg' border='0' alt='Screenshot-2021-08-31-22-07-50-18-0b342c26d6c44f3c8d2de40eabb4e1da'/></a>
 <a href='https://postimg.cc/qhSryMxs' target='_blank'><img src='https://i.postimg.cc/qhSryMxs/Screenshot-2021-08-31-22-07-05-05-0b342c26d6c44f3c8d2de40eabb4e1da.jpg' border='0' alt='Screenshot-2021-08-31-22-07-05-05-0b342c26d6c44f3c8d2de40eabb4e1da'/></a>
 <a href='https://postimg.cc/8JJQpggj' target='_blank'><img src='https://i.postimg.cc/8JJQpggj/Screenshot-2021-08-31-22-07-24-96-0b342c26d6c44f3c8d2de40eabb4e1da.jpg' border='0' alt='Screenshot-2021-08-31-22-07-24-96-0b342c26d6c44f3c8d2de40eabb4e1da'/></a>
 <a href='https://postimg.cc/JDfwtYRK' target='_blank'><img src='https://i.postimg.cc/JDfwtYRK/Screenshot-2021-08-31-22-07-41-05-0b342c26d6c44f3c8d2de40eabb4e1da.jpg' border='0' alt='Screenshot-2021-08-31-22-07-41-05-0b342c26d6c44f3c8d2de40eabb4e1da'/></a>
 
 # Support 💰
+
 Klik tombol di bawah untuk mendukung saya lewat donasi
 
 <p align="center">
