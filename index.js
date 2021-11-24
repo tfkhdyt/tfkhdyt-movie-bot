@@ -192,11 +192,29 @@ bot.on('callback_query', (ctx) => {
     if (res.data.Poster == 'N/A') {
       return ctx.replyWithMarkdown(sendDetail(data), {
         ...Markup.inlineKeyboard([
-          Markup.button.url(
-            '🔎 Cari di psarips',
-            `https://psarips.top/?s=${data.Title}`
-          ),
-          Markup.button.url('🔎 Cari di pahe', `https://pahe.ph/?s=${imdbID}`),
+          [
+            Markup.button.url(
+              '🔎 Cari di psarips',
+              `https://psarips.top/?s=${data.Title}`
+            ),
+            Markup.button.url(
+              '🔎 Cari di pahe',
+              `https://pahe.ph/?s=${imdbID}`
+            ),
+          ],
+          [
+            Markup.button.url('💵 Donasi', 'https://donate.tfkhdyt.my.id/'),
+            Markup.button.url(
+              '💻 Source Code',
+              'https://github.com/tfkhdyt/tfkhdyt-movie-bot'
+            ),
+          ],
+          [
+            Markup.button.url(
+              '💠 Project saya yang lainnya',
+              'https://tfkhdyt.my.id/#portfolio'
+            ),
+          ],
         ]),
       });
     }
@@ -208,11 +226,29 @@ bot.on('callback_query', (ctx) => {
         caption: sendDetail(data),
         parse_mode: 'Markdown',
         ...Markup.inlineKeyboard([
-          Markup.button.url(
-            '🔎 Cari di psarips',
-            `https://psarips.top/?s=${data.Title}`
-          ),
-          Markup.button.url('🔎 Cari di pahe', `https://pahe.ph/?s=${imdbID}`),
+          [
+            Markup.button.url(
+              '🔎 Cari di psarips',
+              `https://psarips.top/?s=${data.Title}`
+            ),
+            Markup.button.url(
+              '🔎 Cari di pahe',
+              `https://pahe.ph/?s=${imdbID}`
+            ),
+          ],
+          [
+            Markup.button.url('💵 Donasi', 'https://donate.tfkhdyt.my.id/'),
+            Markup.button.url(
+              '💻 Source Code',
+              'https://github.com/tfkhdyt/tfkhdyt-movie-bot'
+            ),
+          ],
+          [
+            Markup.button.url(
+              '💠 Project saya yang lainnya',
+              'https://tfkhdyt.my.id/#portfolio'
+            ),
+          ],
         ]),
       }
     );
