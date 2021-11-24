@@ -101,6 +101,7 @@ bot.on('callback_query', (ctx) => {
       caption: sendDetail(data),
       parse_mode: 'Markdown',
       ...Markup.inlineKeyboard([ 
+        Markup.button.url('🔎 Cari di psarips', `https://psarips.top/?s=${imdbID}`),
         Markup.button.url('🔎 Cari di pahe.ph', `https://pahe.ph/?s=${imdbID}`)
       ]) 
     });
