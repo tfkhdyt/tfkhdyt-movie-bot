@@ -14,10 +14,11 @@
     "telegram",
     "download",
     "pahe",
-    "netflix"
+    "netflix",
+    "psarips"
   ],
   "author": "tfkhdyt",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
