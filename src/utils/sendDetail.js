@@ -1,5 +1,5 @@
 module.exports = (data) => {
-  console.log(data);
+  // console.log(data);
   const detail = `${
     data.Title !== 'N/A' && data.Title !== undefined
       ? `*Judul* : \`${data.Title}\``
@@ -73,6 +73,6 @@ module.exports = (data) => {
       ? `\n*IMDB Rating* : \`${data.imdbRating}/10\``
       : ''
   }`;
-  console.log(detail);
+  console.log(`a user found: "${data.Title}"`);
   return detail;
 };
