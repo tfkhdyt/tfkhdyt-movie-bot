@@ -13,9 +13,11 @@ module.exports = () => {
     axios.get(omdbAPI + '&i=' + imdbID).then((res) => {
       //console.log(res.data);
       const data = res.data;
+      // console.log(ctx);
+      const username = ctx.update.callback_query.from.username;
       if (res.data.Poster == 'N/A') {
-        return ctx.replyWithMarkdown(sendDetail(data), {
-          ...Markup.inlineKeyboard(showMarkup(data, imdbID))
+        return ctx.replyWithMarkdown(sendDetail(data, username), {
+          ...Markup.inlineKeyboard(showMarkup(data, imdbID)),
         });
       }
       ctx.replyWithPhoto(
@@ -23,12 +25,11 @@ module.exports = () => {
           url: data.Poster,
         },
         {
-          caption: sendDetail(data),
+          caption: sendDetail(data, username),
           parse_mode: 'Markdown',
-          ...Markup.inlineKeyboard(showMarkup(data, imdbID))
+          ...Markup.inlineKeyboard(showMarkup(data, imdbID)),
         }
       );
     });
   });
 };
-

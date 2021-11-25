@@ -1,4 +1,5 @@
 const { Keyboard } = require('telegram-keyboard');
+const println = require('./print');
 
 module.exports = (keyCallback, ctx) => {
   const keyboard = Keyboard.make(keyCallback, {
@@ -8,5 +9,6 @@ module.exports = (keyCallback, ctx) => {
     `Menampilkan film/series dengan judul "${ctx.message.text}":`,
     keyboard
   );
-  console.log(`a user tried to search for "${ctx.message.text}"`);
+  const username = ctx.update.message.from.username;
+  println(` tried to search for "${ctx.message.text}"`, username);
 };

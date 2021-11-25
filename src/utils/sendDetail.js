@@ -1,4 +1,6 @@
-module.exports = (data) => {
+const println = require('./print');
+
+module.exports = (data, username) => {
   // console.log(data);
   const detail = `${
     data.Title !== 'N/A' && data.Title !== undefined
@@ -73,6 +75,7 @@ module.exports = (data) => {
       ? `\n*IMDB Rating* : \`${data.imdbRating}/10\``
       : ''
   }`;
-  console.log(`a user found: "${data.Title}"`);
+
+  println(` saw the detail of "${data.Title}"`, username);
   return detail;
 };

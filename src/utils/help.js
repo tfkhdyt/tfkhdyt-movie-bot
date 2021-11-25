@@ -1,16 +1,18 @@
 const { bot } = require('../config/config');
+const println = require('./print');
 
 module.exports = () => {
   bot.command('help', (ctx) => {
-    ctx.reply(`Pencarian Film:
-    [Judul Film]
+    ctx.replyWithMarkdown(`Pencarian Film:
+    *Judul Film*
 Contoh:
-    WandaVision
+    *WandaVision*
 
 Pencarian Film Berdasarkan Tahun Rilis:
-    [Judul Film] (Tahun Rilis)
+    *Judul Film* (*Tahun Rilis*)
 Contoh:
-    What If (2021)`);
-    console.log('a user accessed help command');
+    *What If (2021)*`);
+    const username = ctx.update.message.from.username;
+    println(' accessed help command', username);
   });
 };

@@ -7,10 +7,7 @@ module.exports = (data, imdbID) => {
         '🔎 Cari di psarips',
         `https://psarips.top/?s=${data.Title}`
       ),
-      Markup.button.url(
-        '🔎 Cari di pahe',
-        `https://pahe.ph/?s=${imdbID}`
-      ),
+      Markup.button.url('🔎 Cari di pahe', `https://pahe.ph/?s=${imdbID}`),
     ],
     [
       Markup.button.url('💵 Donasi', 'https://donate.tfkhdyt.my.id/'),
