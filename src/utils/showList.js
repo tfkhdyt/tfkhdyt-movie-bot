@@ -8,4 +8,5 @@ module.exports = (keyCallback, ctx) => {
     `Menampilkan film/series dengan judul "${ctx.message.text}":`,
     keyboard
   );
+  console.log('a user found a good query');
 };
