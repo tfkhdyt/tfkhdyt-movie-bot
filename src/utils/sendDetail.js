@@ -1,4 +1,4 @@
-const println = require('./print');
+const println = require('./print')
 
 module.exports = (data, username) => {
   // console.log(data);
@@ -74,8 +74,8 @@ module.exports = (data, username) => {
     data.imdbRating !== 'N/A' && data.imdbRating !== undefined
       ? `\n*IMDB Rating* : \`${data.imdbRating}/10\``
       : ''
-  }`;
+  }`
 
-  println(` saw the detail of "${data.Title}"`, username);
-  return detail;
-};
+  println(` saw the detail of "${data.Title}"`, username)
+  return detail
+}
